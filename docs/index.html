@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>市町村類型マップ</title>
+<meta name="description" content="総務省「類似団体別市町村財政指数表」の類型区分を市区町村ごとに地図で表示する">
+<link rel="stylesheet" href="https://unpkg.com/maplibre-gl@4.7.1/dist/maplibre-gl.css">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="layout">
+  <aside class="panel">
+    <header>
+      <h1>市町村類型マップ</h1>
+      <p class="sub">総務省「類似団体別市町村財政指数表」令和6年度の類型区分（人口・産業構造は令和2年国勢調査、団体は令和7年3月31日現在）</p>
+    </header>
+
+    <section>
+      <div class="seg" role="radiogroup" aria-label="濃淡で表す項目">
+        <button type="button" data-mode="pop" aria-pressed="true">人口区分で塗る</button>
+        <button type="button" data-mode="ind" aria-pressed="false">産業構造で塗る</button>
+      </div>
+    </section>
+
+    <section>
+      <label class="search">自治体を探す
+        <input id="q" type="search" list="names" placeholder="例：仙台市、白川村" autocomplete="off">
+      </label>
+      <datalist id="names"></datalist>
+    </section>
+
+    <section>
+      <h2>類型（マスを押すとその類型だけを表示）</h2>
+      <div id="legend"></div>
+      <button type="button" id="clear" class="link" hidden>選択を解除</button>
+    </section>
+
+    <section id="detail" hidden></section>
+
+    <section id="list" hidden>
+      <h2 id="list-title"></h2>
+      <ol id="list-body"></ol>
+    </section>
+
+    <footer>
+      <p>出典：総務省「類似団体別市町村財政指数表（令和6年度）」、国土数値情報（行政区域データ、2025年1月1日時点）（国土交通省）を加工して作成。</p>
+      <p>産業構造の「Ⅲ次」は第3次産業、「Ⅱ次、Ⅲ次」は第2次と第3次産業の就業者の割合を指す。※は指数表の選定から外れた団体（類型は該当）。</p>
+      <p><a href="data/ruiji_R06.csv" download>類型一覧CSV</a></p>
+    </footer>
+  </aside>
+  <main id="map" aria-label="市区町村の類型を色分けした地図"></main>
+</div>
+<div id="tip" role="tooltip" hidden></div>
+<script src="https://unpkg.com/maplibre-gl@4.7.1/dist/maplibre-gl.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
