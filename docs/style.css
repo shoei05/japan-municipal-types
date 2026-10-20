@@ -19,6 +19,12 @@ h1 { font-size: 20px; margin: 0 0 6px; }
 h2 { font-size: 13px; font-weight: 600; color: var(--ink-2); margin: 0 0 8px; }
 .sub { font-size: 12px; color: var(--ink-2); margin: 0; line-height: 1.6; }
 section { margin-top: 18px; }
+.howto { margin-top: 14px; border: 1px solid var(--line); border-radius: 8px; padding: 8px 12px; font-size: 12.5px; line-height: 1.7; }
+.howto summary { font-size: 13px; font-weight: 600; cursor: pointer; }
+.howto p { margin: 6px 0; }
+.howto ul { margin: 4px 0; padding-left: 1.2em; }
+.howto li { margin-bottom: 4px; }
+.howto .note { color: var(--ink-2); font-size: 11.5px; }
 footer { margin-top: 24px; font-size: 11px; color: var(--muted); line-height: 1.6; }
 footer a { color: var(--accent); }
 
