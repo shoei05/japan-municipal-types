@@ -168,13 +168,25 @@ function showDetail(p) {
   el.hidden = false;
 }
 
+// 団体を選ぶと、詳細を出し、同じ類型の団体（類似団体）を地図と一覧で示す
+function pick(p) {
+  map.setFilter("muni-picked", ["==", ["get", "code"], p.code || ""]);
+  if (p.kubun && p.kubun !== selected) select(p.kubun);
+  showDetail(p);
+  // パネルが単独でスクロールする横並びの画面では、詳細欄が見える位置まで送る
+  const panel = document.querySelector(".panel");
+  if (panel.scrollHeight > panel.clientHeight) {
+    const top = document.getElementById("detail").offsetTop - 12;
+    panel.scrollTo({ top, behavior: "smooth" });
+  }
+}
+
 function focusCode(code) {
   const f = features.find((x) => x.properties.code === code);
   if (!f) return;
   const b = bbox(f.geometry);
   map.fitBounds([[b[0], b[1]], [b[2], b[3]]], { padding: 80, maxZoom: 8.5, duration: 600 });
-  map.setFilter("muni-picked", ["==", ["get", "code"], code]);
-  showDetail(f.properties);
+  pick(f.properties);
 }
 
 async function init() {
@@ -202,7 +214,7 @@ async function init() {
   map.addControl(new maplibregl.NavigationControl({ showCompass: false }), "top-right");
   map.addControl(new maplibregl.AttributionControl({
     compact: true,
-    customAttribution: "総務省「類似団体別市町村財政指数表」、国土数値情報（行政区域）を加工",
+    customAttribution: "出典：総務省「類似団体別市町村財政指数表」、国土交通省「国土数値情報（行政区域データ）」（香田将英が加工して作成）",
   }));
 
   map.on("load", () => {
@@ -250,8 +262,7 @@ async function init() {
     });
     map.on("click", "muni-fill", (e) => {
       const p = e.features[0].properties;
-      map.setFilter("muni-picked", ["==", ["get", "code"], p.code || ""]);
-      showDetail(p);
+      pick(p);
     });
   });
 

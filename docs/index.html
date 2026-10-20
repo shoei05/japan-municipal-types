@@ -41,22 +41,22 @@
       <datalist id="names"></datalist>
     </section>
 
-    <section>
-      <h2>類型</h2>
-      <p class="hint">マスを押すと、その類型の団体だけを地図に色付きで残します。</p>
-      <div id="legend"></div>
-      <button type="button" id="clear" class="link" hidden>選択を解除</button>
-    </section>
-
     <section id="detail" hidden></section>
 
     <section id="list" hidden>
       <h2 id="list-title"></h2>
+      <button type="button" id="clear" class="link" hidden>選択を解除</button>
       <ol id="list-body"></ol>
     </section>
 
+    <section>
+      <h2>類型</h2>
+      <p class="hint">マスか地図上の団体を押すと、その類型の団体だけを地図に色付きで残します。</p>
+      <div id="legend"></div>
+    </section>
+
     <footer>
-      <p>出典：総務省「類似団体別市町村財政指数表（令和6年度）」、国土交通省「国土数値情報（行政区域データ）」（2025年1月1日時点）を加工して作成。</p>
+      <p>出典：総務省「類似団体別市町村財政指数表（令和6年度）」（<a href="https://www.soumu.go.jp/iken/ruiji/ruijiR06.html">https://www.soumu.go.jp/iken/ruiji/ruijiR06.html</a>）、国土交通省「国土数値情報（行政区域データ）」2025年1月1日時点（<a href="https://nlftp.mlit.go.jp/ksj/gml/datalist/KsjTmplt-N03-2025.html">https://nlftp.mlit.go.jp/ksj/gml/datalist/KsjTmplt-N03-2025.html</a>）。いずれもCC BY 4.0互換の条件で利用し、香田将英が加工して作成。</p>
       <p>産業構造の「Ⅲ次」は第3次産業、「Ⅱ次、Ⅲ次」は第2次と第3次産業の就業者の割合を指します。※の団体は、指数表を作る際の選定から外れた団体です。類型には該当します。</p>
       <p><a href="data/ruiji_R06.csv" download>類型一覧CSV</a></p>
     </footer>
